@@ -8,14 +8,14 @@ import HtmlResponseViewer from "./HtmlResponseViewer";
 
 export default function ResponseViewer(
     { response }: { response: ApiResponse }) {
-    const { data,details } = response || {};
+    const { data, details } = response || {};
 
-    console.log('response details',{ data,details } )
+    console.log('response details', { data, details })
 
     const responseStatus = details.status ?? -1;
     const responseStatusText = details.statusText || (details.ok ? "Ok" : "");
     const responseTime = details.durationMs ?? -1;
-    const responseSize = details.sizeBytes ?? -1; 
+    const responseSize = details.sizeBytes ?? -1;
 
     const responseStatusCodeElementColors = useMemo(() => {
         if (responseStatus >= 200 && responseStatus < 300) {

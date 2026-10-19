@@ -37,7 +37,7 @@ export default function FormDataBodyEditor({ initialValue = [], onChange }: Form
   }
 
   return (
-    <div className="w-full h-[340px] overflow-auto">
+    <div className="w-full h-80 overflow-auto">
       <table className="custom-table">
         <thead>
           <tr className="custom-thead-tr">

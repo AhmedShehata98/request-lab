@@ -51,7 +51,7 @@ export type BodyType =
         file?: FileReference;
     };
 
-interface RequestBodyContent {
+export interface RequestBodyContent {
     id: string;
     key: string;
     value: string;
