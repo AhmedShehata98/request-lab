@@ -96,3 +96,13 @@
     opacity: 0.4;
     cursor: not-allowed;
 }
+
+.cm-editor {
+    color: var(--color-primary-text);
+    background: var(--color-foreground);
+}
+
+.cm-gutters {
+    color: var(--color-primary-text);
+    background: var(--color-foreground-light);
+}

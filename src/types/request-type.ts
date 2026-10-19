@@ -68,6 +68,8 @@ export interface FileReference {
     name: string;
     mimeType?: string;
     size?: number;
-    // Reference to the actual file data, not the file itself.
+    /** Base64-encoded contents, included so the body can cross extension messaging. */
+    dataBase64?: string;
+    // Optional storage reference for files persisted outside the request payload.
     storageKey?: string;
 }

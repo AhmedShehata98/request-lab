@@ -71,9 +71,6 @@ export async function executeRequest(data: RequestType): Promise<ApiResponse> {
     const start = performance.now();
     const urlInstance = new URL(data.url);
 
-    console.log('request payload', data)
-    console.log('request body', data.body)
-
     let requestHeaders: Headers | undefined;
     if (data.headers && data.headers.length > 0) {
         const headerMap = new Headers();
@@ -103,9 +100,20 @@ export async function executeRequest(data: RequestType): Promise<ApiResponse> {
                 }
                 requestBody = urlSearchParams.toString();
                 break;
-            // case "binary":
-            //     requestBody = (data.body).file?.storageKey;
-            //     break;
+            case "binary": {
+                const file = data.body.file;
+                if (!file || file.dataBase64 === undefined) {
+                    throw new Error("Select the binary file again before sending; its contents are not available.");
+                }
+
+                const binary = atob(file.dataBase64);
+                const bytes = new Uint8Array(binary.length);
+                for (let index = 0; index < binary.length; index += 1) {
+                    bytes[index] = binary.charCodeAt(index);
+                }
+                requestBody = new Blob([bytes], { type: file.mimeType ?? "application/octet-stream" });
+                break;
+            }
             case "none":
                 requestBody = undefined;
                 break;

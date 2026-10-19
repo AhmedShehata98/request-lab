@@ -11,6 +11,7 @@ export default function JsonResponseViewer({ value }: { value: string }) {
             readOnly={true}
             editable={false}
             theme={oneDark}
+
         />
     );
 }

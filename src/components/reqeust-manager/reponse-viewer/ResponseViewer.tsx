@@ -50,7 +50,7 @@ export default function ResponseViewer(
 
 
     return (
-        <div className="w-full flex flex-col items-stretch justify-start px-4">
+        <div className="w-full flex flex-col items-stretch justify-start px-4 mt-4">
             <header className="w-full bg-foreground-light border-b border-border px-4 py-2 rounded-t-sm flex items-center justify-start gap-4">
                 {/* Response status label */}
                 <span
@@ -83,7 +83,7 @@ export default function ResponseViewer(
                 </ul>
 
             </header>
-            <div className="w-full h-[420px] overflow-y-auto flex flex-col items-start justify-start">
+            <div className="w-full h-[420px] overflow-y-auto flex flex-col items-stretch justify-start">
                 {(details.contentKind === ResponseContentKind.JSON || details.contentKind === ResponseContentKind.TEXT) && <JsonResponseViewer value={data} />}
                 {details.contentKind === ResponseContentKind.XML && <XmlResponseViewer value={data} />}
                 {details.contentKind === ResponseContentKind.HTML && <HtmlResponseViewer value={data} />}

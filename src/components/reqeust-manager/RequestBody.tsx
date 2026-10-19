@@ -4,7 +4,7 @@ import FormDataBodyEditor from "./request-body/FormDataBodyEditor";
 import FormUrlencodedBodyEditor from "./request-body/FormUrlencodedBodyEditor";
 import BinaryBodyEditor from "./request-body/BinaryBodyEditor";
 import { LuCircleAlert } from "react-icons/lu";
-import type { FormDataParam, RequestBodyContent } from "../../types/request-type";
+import type { FileReference, FormDataParam, RequestBodyContent } from "../../types/request-type";
 
 export default function RequestBody({ initialValue, onChange }: { initialValue: BodyType, onChange: (value: BodyType) => void }) {
     const bodyType = initialValue.mode;
@@ -23,13 +23,13 @@ export default function RequestBody({ initialValue, onChange }: { initialValue: 
                         : { mode, ...(initialValue.mode === "binary" ? { file: initialValue.file } : {}) };
         onChange(newBody);
     }
-    function handleBodyContentChange(content: string | RequestBodyContent[] | FormDataParam[]) {
+    function handleBodyContentChange(content: string | RequestBodyContent[] | FormDataParam[] | FileReference | undefined) {
         const newBody: BodyType = bodyType === "form-data"
             ? { mode: bodyType, params: Array.isArray(content) ? content as FormDataParam[] : [] }
             : bodyType === "x-www-form-urlencoded"
                 ? { mode: bodyType, params: Array.isArray(content) ? content : [] }
                 : bodyType === "binary"
-                    ? { mode: bodyType }
+                    ? { mode: bodyType, ...(content ? { file: content as FileReference } : {}) }
                     : { mode: "json", content: typeof content === "string" ? content : "" };
         onChange(newBody);
     }
@@ -65,7 +65,7 @@ export default function RequestBody({ initialValue, onChange }: { initialValue: 
                 {bodyType === "json" && <JsonEditor value={initialValue.mode === "json" ? initialValue.content : ""} onChange={handleBodyContentChange} />}
                 {bodyType === "form-data" && <FormDataBodyEditor initialValue={initialValue?.mode === "form-data" ? initialValue.params : []} onChange={handleBodyContentChange} />}
                 {bodyType === "x-www-form-urlencoded" && <FormUrlencodedBodyEditor value={initialValue.mode === "x-www-form-urlencoded" ? initialValue.params : []} onChange={handleBodyContentChange} />}
-                {bodyType === "binary" && <BinaryBodyEditor onChange={handleBodyContentChange} />}
+                {bodyType === "binary" && <BinaryBodyEditor initialValue={initialValue.mode === "binary" ? initialValue.file : undefined} onChange={handleBodyContentChange} />}
             </div>
         </div>
     );
