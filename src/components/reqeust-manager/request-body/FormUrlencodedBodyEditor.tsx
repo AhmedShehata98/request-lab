@@ -1,6 +1,4 @@
-import React from 'react'
-
-function FormUrlencodedBodyEditor({ onChange }: { onChange: (value: string) => void }) {
+function FormUrlencodedBodyEditor(_props: { onChange: (value: string) => void }) {
   return (
     <div>FormUrlencodedBodyEditor</div>
   )

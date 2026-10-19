@@ -30,7 +30,7 @@ export type BodyType =
     }
     | {
         mode: "json";
-        content: RequestBodyContent[];
+        content: string;
     }
     // | 
     // {
@@ -59,12 +59,12 @@ interface RequestBodyContent {
     description?: string;
 }
 
-interface FormDataParam extends RequestBodyContent {
+export interface FormDataParam extends RequestBodyContent {
     type: "text" | "file";
     file?: FileReference;
 }
 
-interface FileReference {
+export interface FileReference {
     name: string;
     mimeType?: string;
     size?: number;

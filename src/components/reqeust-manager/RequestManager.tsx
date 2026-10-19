@@ -33,6 +33,7 @@ export default function RequestManager({ data }: { data: RequestType | null }) {
       method: requestMethod,
       headers: requestHeaders,
       params: requestParams,
+      body: requestBody,
 
     }
     fetchNetworkRequest(request);

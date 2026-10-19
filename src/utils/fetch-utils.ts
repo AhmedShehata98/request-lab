@@ -29,7 +29,6 @@ async function _parseBodyContent(response: Response) {
                 storageType: ResponseStorageType.STRING,
                 value: await response.json(),
             };
-            console.log(ResponseContentKind.JSON + '---content', content)
         } catch {
             content = {
                 kind: ResponseContentKind.TEXT,
@@ -43,7 +42,6 @@ async function _parseBodyContent(response: Response) {
             storageType: ResponseStorageType.STRING,
             value: await response.text(),
         };
-        console.log(ResponseContentKind.HTML + '---content', content)
 
     } else if (mediaType === "application/xml" ||
         mediaType === "text/xml" ||
@@ -53,21 +51,18 @@ async function _parseBodyContent(response: Response) {
             storageType: ResponseStorageType.STRING,
             value: await response.text(),
         };
-        console.log(ResponseContentKind.XML + '---content', content)
     } else if (mediaType?.startsWith("text/")) {
         content = {
             kind: ResponseContentKind.TEXT,
             storageType: ResponseStorageType.STRING,
             value: await response.text(),
         };
-        console.log(ResponseContentKind.TEXT + '---content', content)
     } else {
         content = {
             kind: ResponseContentKind.UNKNOWN,
             storageType: ResponseStorageType.STRING,
             value: await response.text(),
         };
-        console.log(ResponseContentKind.UNKNOWN + '---content', content)
     }
     return content;
 }
@@ -76,7 +71,8 @@ export async function executeRequest(data: RequestType): Promise<ApiResponse> {
     const start = performance.now();
     const urlInstance = new URL(data.url);
 
-
+    console.log('request payload', data)
+    console.log('request body', data.body)
 
     let requestHeaders: Headers | undefined;
     if (data.headers && data.headers.length > 0) {
@@ -91,7 +87,7 @@ export async function executeRequest(data: RequestType): Promise<ApiResponse> {
     if (data.body) {
         switch ((data.body).mode) {
             case "json":
-                requestBody = JSON.stringify((data.body).content);
+                requestBody = (data.body).content;
                 break;
             case "form-data":
                 const formData = new FormData();

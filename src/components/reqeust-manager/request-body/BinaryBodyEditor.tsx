@@ -1,6 +1,4 @@
-import React from 'react'
-
-function BinaryBodyEditor({ onChange }: { onChange: (value: string) => void }) {
+function BinaryBodyEditor(_props: { onChange: (value: string) => void }) {
   return (
     <div>BinaryBodyEditor</div>
   )
