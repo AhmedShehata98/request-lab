@@ -1,0 +1,98 @@
+.json-editor {
+    --editor-bg: var(--color-background-secondary);
+    --editor-border: var(--color-border);
+    --editor-text: var(--color-primary-text);
+    --editor-green: var(--color-success);
+    --editor-red: var(--color-error);
+
+    overflow: hidden;
+    color: var(--editor-text);
+    background: var(--editor-bg);
+    border: 1px solid var(--editor-border);
+    border-radius: 8px;
+    font-family: Inter, system-ui, sans-serif;
+}
+
+.json-editor__header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 44px;
+    padding: 0 14px;
+    background: var(--color-foreground-light);
+    border-bottom: 1px solid var(--editor-border);
+}
+
+.json-editor__filename,
+.json-editor__file {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: monospace;
+    font-size: 13px;
+    color: var(--color-primary-text);
+}
+
+.json-editor__file>* {
+    color: var(--color-primary-text);
+}
+
+.json-editor__status {
+    color: var(--primary-text);
+    font-size: 12px;
+}
+
+.json-editor__status.is-valid,
+.json-editor__status--valid {
+    color: var(--editor-green);
+    font-weight: 500;
+
+}
+
+.json-editor__status.is-invalid,
+.json-editor__status--invalid {
+    color: var(--editor-red);
+}
+
+.json-editor .cm-editor {
+    font-size: 14px;
+}
+
+.json-editor .cm-editor.cm-focused {
+    outline: none;
+}
+
+.json-editor .cm-gutters {
+    border-right: none;
+}
+
+.json-editor__error {
+    margin: 0;
+    padding: 10px 14px;
+    color: var(--editor-red);
+    font-size: 12px;
+    overflow-wrap: anywhere;
+    border-top: 1px solid var(--editor-border);
+}
+
+.json-editor__footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 12px;
+    border-top: 1px solid var(--editor-border);
+}
+
+.json-editor__footer button {
+    padding: 8px 14px;
+    color: #0d141d;
+    background: var(--editor-green);
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.json-editor__footer button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}

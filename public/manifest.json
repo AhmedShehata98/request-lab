@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Request Lab",
+  "version": "1.0.0",
+  "description": "A browser Extension based application used to test your backend API endpoints.",
+
+  "permissions": [],
+
+  "host_permissions": ["<all_urls>"],
+
+  "action": {
+    "default_title": "My Extension",
+    "default_popup": "index.html"
+  },
+
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+
+  "side_panel": {
+    "default_path": "index.html"
+  },
+
+  "icons": {}
+}

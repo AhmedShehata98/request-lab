@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+@import "tailwindcss";
+
+
+
+@theme {
+  --font-roboto-mono: "Roboto Mono", monospace;
+  --font-nunito: "Nunito", sans-serif;
+
+  /* Brand */
+  --color-primary: #FFF9F2;
+  --color-secondary: #1DCED8;
+  --color-secondary-hover: #19B8C1;
+  --color-secondary-light: #8BE9ED;
+  --color-secondary-dark: #1499A5;
+
+  /* Background */
+  --color-background: #070B1D;
+  --color-background-secondary: #0B1228;
+  --color-background-tertiary: #101A33;
+
+  /* Foreground / Surfaces */
+  --color-foreground: #111A30;
+  --color-foreground-light: #17233B;
+  --color-foreground-elevated: #1D2B46;
+  --color-foreground-hover: #263651;
+
+  /* Text */
+  --color-primary-text: #F4F7FC;
+  --color-secondary-text: #AAB6CC;
+  --color-muted-text: #7786A3;
+
+  /* Borders */
+  --color-border: #26344F;
+  --color-border-light: #34445F;
+
+  /* Interaction */
+  --color-focus-ring: #1DCED8;
+
+  /* Semantic */
+  --color-success: #4ADE80;
+  --color-warning: #FBBF24;
+  --color-error: #FB7185;
+  --color-info: #60A5FA;
+
+}
+
+@layer base {
+  html {
+    font-family: var(--font-nunito);
+  }
+  #root {
+    width: 600px;
+    height: 600px;
+    background-color: var(--color-background);
+  }
+}
+
+@layer components {
+  .custom-table {
+    @apply w-full border-collapse;
+  }
+
+  .custom-thead-tr {
+    @apply bg-background-secondary border-b border-border;
+  }
+
+  .custom-th {
+    @apply py-2 px-4 text-left text-secondary-text text-sm font-medium;
+  }
+
+  .custom-tr {
+    /* Add any row-level defaults here if needed */
+  }
+
+  .custom-td {
+    @apply py-1.5 px-4 bg-foreground-light border-b border-background text-primary-text;
+  }
+
+  .custom-td-pe {
+    @apply py-1.5 pe-4 bg-foreground-light border-b border-background text-primary-text;
+  }
+
+  /* Input Styles */
+  .custom-checkbox {
+    @apply accent-secondary size-4 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .custom-input {
+    @apply w-full bg-foreground-light hover:bg-foreground rounded-xs border border-transparent focus:outline-none focus:ring-2 focus:ring-secondary px-4 py-1 text-primary-text placeholder:text-muted-text transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-foreground-light;
+  }
+}
